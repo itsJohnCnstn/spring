@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import static com.johncnstn.spring.crosscutting_concerns.LoggingUtils.logObjectMetadata;
+import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logObjectMetadata;
 
 @Component
 public class LoggingInterceptor implements HandlerInterceptor {

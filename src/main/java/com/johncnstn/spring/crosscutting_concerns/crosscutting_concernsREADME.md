@@ -42,7 +42,7 @@ Runtime class: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect
 Ultimate target class: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect
 Instance: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect@bfa7aa4
 
-Calling: com.johncnstn.spring.crosscutting_concerns.HelloController.sayHello
+Calling: com.johncnstn.spring.crosscutting_concerns.api.HelloController.sayHello
 === end Aspect ===
 ```
 

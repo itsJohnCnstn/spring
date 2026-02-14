@@ -1,4 +1,4 @@
-package com.johncnstn.spring.crosscutting_concerns;
+package com.johncnstn.spring.crosscutting_concerns.utils;
 
 import org.springframework.aop.framework.AopProxyUtils;
 

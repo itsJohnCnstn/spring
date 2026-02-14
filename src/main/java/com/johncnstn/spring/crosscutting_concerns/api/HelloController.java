@@ -1,4 +1,4 @@
-package com.johncnstn.spring.crosscutting_concerns;
+package com.johncnstn.spring.crosscutting_concerns.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

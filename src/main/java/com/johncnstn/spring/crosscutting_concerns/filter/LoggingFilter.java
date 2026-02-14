@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-import static com.johncnstn.spring.crosscutting_concerns.LoggingUtils.logObjectMetadata;
+import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logObjectMetadata;
 
 @Component
 public class LoggingFilter implements Filter {
