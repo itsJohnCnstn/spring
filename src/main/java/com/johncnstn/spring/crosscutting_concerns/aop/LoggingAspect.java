@@ -1,9 +1,11 @@
-package com.johncnstn.spring.aop;
+package com.johncnstn.spring.crosscutting_concerns.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
+
+import static com.johncnstn.spring.crosscutting_concerns.LoggingUtils.logObjectMetadata;
 
 // Aspect -> This class groups cross-cutting logic (logging) that can run around business methods.
 @Aspect
@@ -26,12 +28,17 @@ public class LoggingAspect {
 
     // Advice -> @Before means this advice runs before the matched method executes.
     // JoinPoint -> Each matched method execution is a join point where this advice is applied.
-    @Before("execution(* com.johncnstn.spring..*(..))")
+    @Before("execution(* com.johncnstn.spring.*.*(..))")
     public void logBefore(JoinPoint joinPoint) {
+        Object aspect = this;
+        System.out.println("\n===Aspect (actually it's advice):===");
+        logObjectMetadata(aspect);
+
         String methodName = joinPoint.getSignature().getName();
         String className = joinPoint.getSignature().getDeclaringTypeName();
+        System.out.println("\nCalling: " + className + "." + methodName);
+        System.out.println("===endAspect (actually it's advice)===\n");
 
-        System.out.println("Calling: " + className + "." + methodName);
     }
 
 }
