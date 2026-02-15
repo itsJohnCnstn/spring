@@ -1,5 +1,6 @@
 package com.johncnstn.spring.crosscutting_concerns.filter;
 
+import com.johncnstn.spring.crosscutting_concerns.enums.AdviceType;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.endOfCustomLogBlock;
 import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logCrossCuttingConcernCallerMetadata;
+import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.startOfCustomLogBlock;
 
 @Component
 public class FilterImpl implements Filter {
@@ -18,22 +21,20 @@ public class FilterImpl implements Filter {
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        FilterImpl filter = this;
+        String className = this.getClass().getSimpleName();
+        startOfCustomLogBlock(className, AdviceType.BEFORE);
 
-        System.out.println("\n===Filter:===");
-        System.out.println("I'm just a filter. I don't have a target class.");
-        System.out.println("Before request");
+        FilterImpl filter = this;
         logCrossCuttingConcernCallerMetadata(filter);
-        System.out.println("===endFilter===\n");
+
+        String endOfCustomLog = "";
+        endOfCustomLogBlock(endOfCustomLog);
 
         filterChain.doFilter(servletRequest, servletResponse);
 
-        System.out.println("\n===Filter:===");
-        System.out.println("I'm just a filter. I don't have a target class.");
-        System.out.println("After request");
+        startOfCustomLogBlock(className, AdviceType.AFTER);
         logCrossCuttingConcernCallerMetadata(filter);
-        System.out.println("===endFilter===\n");
-
+        endOfCustomLogBlock(endOfCustomLog);
     }
 
 }

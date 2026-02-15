@@ -1,5 +1,6 @@
 package com.johncnstn.spring.crosscutting_concerns.aop;
 
+import com.johncnstn.spring.crosscutting_concerns.enums.AdviceType;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -35,7 +36,7 @@ public class DeclarativeAspect {
     @Before("execution(* com.johncnstn.spring.crosscutting_concerns.service.*.*(..))")
     public void logBefore(JoinPoint joinPoint) {
         String className = this.getClass().getSimpleName();
-        startOfCustomLogBlock(className);
+        startOfCustomLogBlock(className, AdviceType.BEFORE);
 
         Object aspect = this;
         logCrossCuttingConcernCallerMetadata(aspect);

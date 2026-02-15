@@ -10,8 +10,8 @@ public abstract class LoggingUtils {
     private LoggingUtils() {
     }
 
-    public static void startOfCustomLogBlock(String className) {
-        System.out.println("\n===%s: %s===".formatted(className, AdviceType.BEFORE));
+    public static void startOfCustomLogBlock(String className, AdviceType adviceType) {
+        System.out.println("\n===%s: %s===".formatted(className, adviceType));
     }
 
     public static void logCrossCuttingConcernCallerMetadata(Object object) {
