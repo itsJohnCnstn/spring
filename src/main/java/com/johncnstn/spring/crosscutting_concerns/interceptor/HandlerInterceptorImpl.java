@@ -9,27 +9,30 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logObjectMetadata;
 
 @Component
-public class LoggingInterceptor implements HandlerInterceptor {
+public class HandlerInterceptorImpl implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        LoggingInterceptor interceptor = this;
-        System.out.println("\n===Interceptor:===");
+        HandlerInterceptorImpl interceptor = this;
+        System.out.println("===Interceptor:===");
+        logObjectMetadata(interceptor);
 
         if (handler instanceof HandlerMethod handlerMethod) {
+
+            // TargetController isn’t being advised by any AOP pointcut, so Spring has no reason to wrap it
+            // It was a CGLib proxy when there was a pointcut pointed
             Object beanClass = handlerMethod.getBean().getClass();
             String simpleName = handlerMethod.getBeanType().getSimpleName();
             String methodName = handlerMethod.getMethod().getName();
-            System.out.println("###");
+            System.out.println("### Target class:");
             System.out.println("beanClass: " + beanClass);
-            System.out.println("simpleName: " + simpleName);
+            System.out.println("beanSimpleName: " + simpleName);
             System.out.println("methodName: " + methodName);
             System.out.println("###");
         }
 
-        logObjectMetadata(interceptor);
-        System.out.println("===endInterceptor===\n");
+        System.out.println("===endInterceptor===");
         return true;
     }
 

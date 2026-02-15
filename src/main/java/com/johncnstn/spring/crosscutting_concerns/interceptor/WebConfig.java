@@ -6,14 +6,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    private final LoggingInterceptor loggingInterceptor;
+    private final HandlerInterceptorImpl handlerInterceptorImpl;
 
-    public WebConfig(LoggingInterceptor loggingInterceptor) {
-        this.loggingInterceptor = loggingInterceptor;
+    public WebConfig(HandlerInterceptorImpl handlerInterceptorImpl) {
+        this.handlerInterceptorImpl = handlerInterceptorImpl;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loggingInterceptor);
+        registry.addInterceptor(handlerInterceptorImpl);
     }
 }
