@@ -12,9 +12,9 @@ Example: `http://localhost:8080/hello`
 === Filter ===
 Before request
 When: 2026-02-14T15:46:53.731Z
-Runtime class: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter
-Ultimate target class: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter
-Instance: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter@413e4a24
+Runtime class: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl
+Ultimate target class: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl
+Instance: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl@413e4a24
 === end Filter ===
 ```
 
@@ -25,9 +25,9 @@ Instance: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter@413e4a
 ```text
 === Interceptor ===
 When: 2026-02-14T15:46:53.739Z
-Runtime class: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor
-Ultimate target class: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor
-Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor@44d48e9e
+Runtime class: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl
+Ultimate target class: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl
+Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl@44d48e9e
 === end Interceptor ===
 ```
 
@@ -42,7 +42,7 @@ Runtime class: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect
 Ultimate target class: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect
 Instance: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect@bfa7aa4
 
-Calling: com.johncnstn.spring.crosscutting_concerns.api.HelloController.sayHello
+Calling: com.johncnstn.spring.crosscutting_concerns.api.TargetController.sayHello
 === end Aspect ===
 ```
 
@@ -54,9 +54,9 @@ Calling: com.johncnstn.spring.crosscutting_concerns.api.HelloController.sayHello
 === Filter ===
 After request
 When: 2026-02-14T15:46:53.753Z
-Runtime class: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter
-Ultimate target class: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter
-Instance: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter@413e4a24
+Runtime class: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl
+Ultimate target class: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl
+Instance: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl@413e4a24
 === end Filter ===
 ```
 
@@ -70,9 +70,9 @@ Instance: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter@413e4a
 === Filter ===
 Before request
 When: 2026-02-14T15:49:58.169Z
-Runtime class: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter
-Ultimate target class: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter
-Instance: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter@413e4a24
+Runtime class: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl
+Ultimate target class: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl
+Instance: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl@413e4a24
 === end Filter ===
 ```
 
@@ -83,9 +83,9 @@ Instance: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter@413e4a
 ```text
 === Interceptor ===
 When: 2026-02-14T15:49:58.172Z
-Runtime class: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor
-Ultimate target class: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor
-Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor@44d48e9e
+Runtime class: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl
+Ultimate target class: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl
+Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl@44d48e9e
 === end Interceptor ===
 ```
 
@@ -97,9 +97,9 @@ Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingIntercep
 === Filter ===
 After request
 When: 2026-02-14T15:49:58.175Z
-Runtime class: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter
-Ultimate target class: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter
-Instance: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter@413e4a24
+Runtime class: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl
+Ultimate target class: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl
+Instance: com.johncnstn.spring.crosscutting_concerns.filter.FilterImpl@413e4a24
 === end Filter ===
 ```
 
@@ -110,9 +110,9 @@ Instance: com.johncnstn.spring.crosscutting_concerns.filter.LoggingFilter@413e4a
 ```text
 === Interceptor ===
 When: 2026-02-14T15:49:58.178Z
-Runtime class: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor
-Ultimate target class: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor
-Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor@44d48e9e
+Runtime class: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl
+Ultimate target class: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl
+Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl@44d48e9e
 === end Interceptor ===
 ```
 
@@ -121,7 +121,7 @@ Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingIntercep
 # 🔎 What Does This Mean?
 
 ```
-Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.LoggingInterceptor@44d48e9e
+Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerInterceptorImpl@44d48e9e
 ```
 
 This is the default `toString()` implementation from `java.lang.Object`.

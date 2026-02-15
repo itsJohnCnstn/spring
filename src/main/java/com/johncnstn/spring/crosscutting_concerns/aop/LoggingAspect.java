@@ -23,20 +23,19 @@ import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logO
     }
  */
 public class LoggingAspect {
-    // Pointcut -> "execution(* com.johncnstn.spring..*(..))" selects join points:
+    // Pointcut -> "execution(* com.johncnstn.spring.crosscutting_concerns.service.*.*(..))" selects join points:
     // any method in classes directly under package com.johncnstn.spring.
 
     // Advice -> @Before means this advice runs before the matched method executes.
     // JoinPoint -> Each matched method execution is a join point where this advice is applied.
-    @Before("execution(* com.johncnstn.spring.crosscutting_concerns.api.*.*(..))")
+    @Before("execution(* com.johncnstn.spring.crosscutting_concerns.service.*.*(..))")
     public void logBefore(JoinPoint joinPoint) {
         Object aspect = this;
         System.out.println("\n===Aspect (actually it's advice):===");
         logObjectMetadata(aspect);
 
-        String methodName = joinPoint.getSignature().getName();
-        String className = joinPoint.getSignature().getDeclaringTypeName();
-        System.out.println("\nCalling: " + className + "." + methodName);
+        String runtimeJoinPointClassName = joinPoint.getThis().getClass().getName();
+        System.out.println("runtimeJoinPointClassName: " + runtimeJoinPointClassName);
         System.out.println("===endAspect (actually it's advice)===\n");
 
     }

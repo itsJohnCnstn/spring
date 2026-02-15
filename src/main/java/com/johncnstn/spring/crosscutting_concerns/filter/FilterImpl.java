@@ -12,15 +12,16 @@ import java.io.IOException;
 import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logObjectMetadata;
 
 @Component
-public class LoggingFilter implements Filter {
+public class FilterImpl implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse,
                          FilterChain filterChain) throws IOException, ServletException {
-        LoggingFilter filter = this;
+        FilterImpl filter = this;
 
         System.out.println("\n===Filter:===");
+        System.out.println("I'm just a filter. I don't have a target class.");
         System.out.println("Before request");
         logObjectMetadata(filter);
         System.out.println("===endFilter===\n");
@@ -28,6 +29,7 @@ public class LoggingFilter implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
 
         System.out.println("\n===Filter:===");
+        System.out.println("I'm just a filter. I don't have a target class.");
         System.out.println("After request");
         logObjectMetadata(filter);
         System.out.println("===endFilter===\n");
