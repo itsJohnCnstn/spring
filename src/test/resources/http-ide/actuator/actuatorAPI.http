@@ -1,0 +1,5 @@
+### Shows application health information.
+GET http://localhost:8080/actuator/health
+
+### Displays a complete list of all the Spring beans in your application.
+GET http://localhost:8080/actuator/beans
