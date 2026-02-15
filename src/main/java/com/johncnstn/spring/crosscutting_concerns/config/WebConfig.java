@@ -1,19 +1,20 @@
-package com.johncnstn.spring.crosscutting_concerns.interceptor;
+package com.johncnstn.spring.crosscutting_concerns.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    private final HandlerInterceptorImpl handlerInterceptorImpl;
+    private final HandlerInterceptor handlerInterceptor;
 
-    public WebConfig(HandlerInterceptorImpl handlerInterceptorImpl) {
-        this.handlerInterceptorImpl = handlerInterceptorImpl;
+    public WebConfig(HandlerInterceptor handlerInterceptor) {
+        this.handlerInterceptor = handlerInterceptor;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(handlerInterceptorImpl);
+        registry.addInterceptor(handlerInterceptor);
     }
 }

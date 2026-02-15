@@ -1,4 +1,3 @@
-
 ---
 
 # 1️⃣ What is a Spring AOP Proxy?
@@ -19,6 +18,7 @@ Controller → Proxy → TargetServiceImpl
 ```
 
 The proxy:
+
 1. Executes advice (Before / Around / After)
 2. Delegates to the real method
 3. Executes post-processing logic
@@ -36,17 +36,20 @@ Spring can create proxies in two ways:
 ## 🔵 A) JDK Dynamic Proxy (Interface-based)
 
 ### How it works
+
 - Creates a runtime-generated class
 - That class **implements the same interfaces**
 - Delegates calls via InvocationHandler-like mechanism
 - Does NOT subclass the concrete class
 
 Generated class example:
+
 ```
 jdk.proxy2.$Proxy12
 ```
 
 ### Core property
+
 Proxy is an implementation of the interface — NOT a subclass of the concrete class.
 
 ---
@@ -54,17 +57,20 @@ Proxy is an implementation of the interface — NOT a subclass of the concrete c
 ## 🟢 B) CGLIB Proxy (Class-based)
 
 ### How it works
+
 - Generates a **subclass** of your concrete class
 - Overrides methods
 - Inserts advice logic
 - Calls `super.method()` internally
 
 Generated class example:
+
 ```
 TargetServiceImpl$$SpringCGLIB$$0
 ```
 
 ### Core property
+
 Proxy **is a subclass** of your concrete class.
 
 ---
@@ -77,19 +83,20 @@ Proxy **is a subclass** of your concrete class.
 
 ```mermaid
 sequenceDiagram
-  autonumber
-  participant C as Controller
-  participant P as JDK Proxy<br/>(implements TargetService)
-  participant T as TargetServiceImpl
-  C->>P: doBusinessLogic()
-  P->>P: Before Advice
-  P->>T: invoke target method
-  T-->>P: return
-  P->>P: After Advice
-  P-->>C: return
+    autonumber
+    participant C as Controller
+    participant P as JDK Proxy<br/>(implements TargetService)
+    participant T as TargetServiceImpl
+    C ->> P: doBusinessLogic()
+    P ->> P: Before Advice
+    P ->> T: invoke target method
+    T -->> P: return
+    P ->> P: After Advice
+    P -->> C: return
 ```
 
 ### Key idea:
+
 Proxy implements interface.
 No subclassing.
 
@@ -99,19 +106,20 @@ No subclassing.
 
 ```mermaid
 sequenceDiagram
-  autonumber
-  participant C as Controller
-  participant P as CGLIB Proxy<br/>(subclass)
-  participant S as super.doBusinessLogic()
-  C->>P: doBusinessLogic()
-  P->>P: Before Advice
-  P->>S: call original method
-  S-->>P: return
-  P->>P: After Advice
-  P-->>C: return
+    autonumber
+    participant C as Controller
+    participant P as CGLIB Proxy<br/>(subclass)
+    participant S as super.doBusinessLogic()
+    C ->> P: doBusinessLogic()
+    P ->> P: Before Advice
+    P ->> S: call original method
+    S -->> P: return
+    P ->> P: After Advice
+    P -->> C: return
 ```
 
 ### Key idea:
+
 Proxy overrides method via subclass.
 
 ---
@@ -119,7 +127,7 @@ Proxy overrides method via subclass.
 # 4️⃣ Core Differences Table
 
 | Feature                       | JDK Proxy            | CGLIB                      |
-| ----------------------------- | -------------------- | -------------------------- |
+|-------------------------------|----------------------|----------------------------|
 | Requires interface            | ✅ Yes                | ❌ No                       |
 | Proxy type                    | Implements interface | Subclass of concrete class |
 | Class name example            | `$Proxy12`           | `$$SpringCGLIB$$0`         |
@@ -157,6 +165,7 @@ Java forbids overriding it → CGLIB cannot intercept.
 # 6️⃣ Why JDK Proxy Can Intercept Final Implementation Methods
 
 JDK Proxy:
+
 - Does NOT override the class
 - Intercepts at interface boundary
 
@@ -193,6 +202,7 @@ Call to `inner()` does NOT go through proxy.
 Advice is bypassed.
 
 Fix:
+
 - Move method to another bean
 - Or use full AspectJ weaving
 
@@ -261,14 +271,20 @@ spring:
 
 ```java
 System.out.println(bean.getClass());
-System.out.println(Arrays.toString(bean.getClass().getInterfaces()));
+        System.out.
+
+println(Arrays.toString(bean.getClass().
+
+getInterfaces()));
 ```
 
 If class contains:
+
 - `$$SpringCGLIB$$` → CGLIB
 - `$Proxy` → JDK Proxy
 
 If interfaces include:
+
 - `org.springframework.cglib.proxy.Factory` → CGLIB
 - Your business interface + SpringProxy → JDK proxy
 

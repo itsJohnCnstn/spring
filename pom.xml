@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>4.0.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.johncnstn</groupId>
     <artifactId>spring</artifactId>
@@ -28,8 +28,11 @@
     </scm>
     <properties>
         <java.version>25</java.version>
+        <spring-boot-starter-aop.version>3.5.10</spring-boot-starter-aop.version>
     </properties>
+
     <dependencies>
+        <!-- MVC + embedded Tomcat/Jetty + JSON etc. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
@@ -37,24 +40,30 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!-- AOP -->
         <!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${spring-boot-starter-aop.version}</version>
             <scope>compile</scope>
         </dependency>
 
+        <!-- Devtools: usually runtime + optional -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

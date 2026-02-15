@@ -38,9 +38,9 @@ Instance: com.johncnstn.spring.crosscutting_concerns.interceptor.HandlerIntercep
 ```text
 === Aspect (Advice) ===
 When: 2026-02-14T15:46:53.745Z
-Runtime class: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect
-Ultimate target class: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect
-Instance: com.johncnstn.spring.crosscutting_concerns.aop.LoggingAspect@bfa7aa4
+Runtime class: com.johncnstn.spring.crosscutting_concerns.aop.DeclarativeAspect
+Ultimate target class: com.johncnstn.spring.crosscutting_concerns.aop.DeclarativeAspect
+Instance: com.johncnstn.spring.crosscutting_concerns.aop.DeclarativeAspect@bfa7aa4
 
 Calling: com.johncnstn.spring.crosscutting_concerns.api.TargetController.sayHello
 === end Aspect ===
@@ -207,7 +207,9 @@ sequenceDiagram
     F -->> C: HTTP 404
     Note over F: Filter prints "After request"\n(after chain.doFilter returns)
 ```
-**Interceptor may run multiple times because Spring can do multiple dispatches inside the same filter chain (REQUEST + ERROR)**
+
+**Interceptor may run multiple times because Spring can do multiple dispatches inside the same filter chain (REQUEST +
+ERROR)**
 
 # Questions:
 

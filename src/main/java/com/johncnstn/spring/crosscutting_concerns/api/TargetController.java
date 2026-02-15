@@ -32,8 +32,6 @@ public class TargetController {
     @GetMapping("/hello")
     public String sayHello() {
         targetServiceJustClass.doBusinessLogic();
-        System.out.println("Injected targetService class = " + targetService.getClass());
-        System.out.println("Injected targetService interfaces = " + java.util.Arrays.toString(targetService.getClass().getInterfaces()));
         targetService.doBusinessLogic();
         return "Hey there!";
     }

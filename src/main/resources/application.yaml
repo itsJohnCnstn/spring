@@ -4,8 +4,14 @@ spring:
   aop:
     proxy-target-class: false
 
+
 management:
   endpoints:
     web:
       exposure:
         include: health,info,beans,env
+
+logging:
+  level:
+    web: debug
+

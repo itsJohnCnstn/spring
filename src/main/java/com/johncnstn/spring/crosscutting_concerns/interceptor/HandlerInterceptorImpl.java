@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logObjectMetadata;
+import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logCrossCuttingConcernCallerMetadata;
 
 @Component
 public class HandlerInterceptorImpl implements HandlerInterceptor {
@@ -16,7 +16,7 @@ public class HandlerInterceptorImpl implements HandlerInterceptor {
 
         HandlerInterceptorImpl interceptor = this;
         System.out.println("===Interceptor:===");
-        logObjectMetadata(interceptor);
+        logCrossCuttingConcernCallerMetadata(interceptor);
 
         if (handler instanceof HandlerMethod handlerMethod) {
 
