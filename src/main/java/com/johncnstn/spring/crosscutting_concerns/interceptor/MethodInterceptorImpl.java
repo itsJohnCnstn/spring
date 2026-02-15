@@ -1,27 +1,44 @@
 package com.johncnstn.spring.crosscutting_concerns.interceptor;
 
+import com.johncnstn.spring.crosscutting_concerns.enums.AdviceType;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.jspecify.annotations.Nullable;
 
+import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.endOfCustomLogBlock;
+import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.logCrossCuttingConcernCallerMetadata;
+import static com.johncnstn.spring.crosscutting_concerns.utils.LoggingUtils.startOfCustomLogBlock;
+
 public class MethodInterceptorImpl implements MethodInterceptor {
     @Override
     public @Nullable Object invoke(MethodInvocation invocation) throws Throwable {
+        MethodInterceptorImpl methodInterceptor = this;
+        String className = methodInterceptor.getClass().getSimpleName();
+        startOfCustomLogBlock(className, AdviceType.BEFORE);
+
+        logCrossCuttingConcernCallerMetadata(methodInterceptor);
+
         var method = invocation.getMethod();
         var target = invocation.getThis();
-
-        System.out.println("===MethodInterceptor: BEFORE===");
-        System.out.println("target: " + target);
-        System.out.println("class: " + (target != null ? target.getClass().getName() : "null"));
-        System.out.println("method: " + method.getDeclaringClass().getSimpleName() + "." + method.getName());
-        System.out.println("===============================");
+        String targetClassName = target.getClass().getName();
+        String methodName = method.getName();
+        String endOfLog = """
+                target: %s
+                targetClassName: %s
+                methodName: %s
+                """.formatted(target, targetClassName, methodName);
+        endOfCustomLogBlock(endOfLog);
 
         try {
             Object result = invocation.proceed();
 
-            System.out.println("===MethodInterceptor: AFTER===");
-            System.out.println("result: " + result);
-            System.out.println("==============================");
+            startOfCustomLogBlock(className, AdviceType.AFTER);
+            logCrossCuttingConcernCallerMetadata(methodInterceptor);
+            String endOfLogAfter = new StringBuilder(endOfLog)
+                    .append("invocation.proceed() result: ").append(result)
+                    .append("\n")
+                    .toString();
+            endOfCustomLogBlock(endOfLogAfter);
             return result;
         } catch (Throwable t) {
             System.out.println("===MethodInterceptor: ERROR===");
