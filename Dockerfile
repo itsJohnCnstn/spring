@@ -1,5 +1,5 @@
 # ---- Build Stage ----
-FROM eclipse-temurin:25-jdk AS builder
+FROM eclipse-temurin:25-jdk-alpine AS builder
 WORKDIR /app
 
 # Copy Maven/Gradle build files first for caching (Maven example)
@@ -14,7 +14,7 @@ COPY src src
 RUN ./mvnw -q clean package -DskipTests
 
 # ---- Runtime Stage ----
-FROM eclipse-temurin:25-jre
+FROM eclipse-temurin:25-jre-alpine
 
 WORKDIR /app
 
